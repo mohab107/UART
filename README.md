@@ -1,11 +1,11 @@
 # Full-Duplex UART Controller with FIFO Integration
 
-## 📌 Project Overview
+##  Project Overview
 This repository contains a complete, robust implementation of a **Universal Asynchronous Receiver-Transmitter (UART)** system designed in Verilog. The project is structured to support full-duplex serial communication and integrates Xilinx Vivado FIFO IP blocks for efficient data buffering. 
 
 The design features highly parameterized Transmitter and Receiver modules, each controlled by precise Finite State Machines (FSMs), and relies on a customizable baud rate generator. A comprehensive testbench is included to verify simultaneous, bidirectional data exchange between two instantiated UART nodes.
 
-## ✨ Key Features
+##  Key Features
 * **Full-Duplex Communication:** Independent `uart_tx` and `uart_rx` modules allow simultaneous transmission and reception of data.
 * **FIFO Buffering:** Seamless integration with Vivado `fifo_generator` IP to buffer incoming and outgoing data, preventing data loss and optimizing processor interface timing.
 * **Custom Baud Rate Generator:** A parameterized `timer` module utilizes a `TIMER_FINAL_VALUE` to accurately synthesize the required oversampling ticks (`s_tick`) from the system clock.
@@ -14,7 +14,7 @@ The design features highly parameterized Transmitter and Receiver modules, each 
 
 ---
 
-## 🏗️ System Architecture & Signal Description
+##  System Architecture & Signal Description
 
 ### `uart` (Top Module)
 Integrates the Receiver, Transmitter, Baud Rate Generator, and the dual FIFO buffers.
@@ -31,7 +31,7 @@ Integrates the Receiver, Transmitter, Baud Rate Generator, and the dual FIFO buf
 
 ---
 
-## ⚙️ Finite State Machines (FSM)
+##  Finite State Machines (FSM)
 
 ### UART Receiver (`uart_rx`) FSM
 The Receiver constantly monitors the `rx` line for a high-to-low transition (Start bit). It uses the 16x oversampling tick (`s_tick`) to sample data at the center of each bit period (`s_reg == 7` for the start bit, and `s_reg == 15` for data bits).
@@ -77,7 +77,7 @@ stateDiagram-v2
 
 ---
 
-## ✅ Simulation & Verification
+##  Simulation & Verification
 A rigorous full-duplex testbench (`duplex_uart_tb.v`) is provided. It instantiates two identical UART modules (`uart_a` and `uart_b`) with their `tx` and `rx` lines cross-connected. 
 
 **Verification Flow:**
